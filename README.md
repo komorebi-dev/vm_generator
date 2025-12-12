@@ -9,10 +9,10 @@ Le script [vm.sh](./vm.sh) permet de créer, via la CLI de VirtualBox, une VM de
 
 Le script est fait pour télécharger une archive contenant l'image en indiquant une URL dans la variable `URL_DOWNLOAD`.
 
-[!CAUTION]
+>[!CAUTION]
 > Les paths de téléchargements sont spécifiquement faits pour les Linux (Ubuntu) de 42 Lausanne, modifier ces paths pour qu’ils conviennent a votre environnement.
 
-[!WARNING]
+>[!WARNING]
 > Si vous changé `URL_DOWNLOAD` (donc d'OS et d'image), il faut modifier en conséquence toutes les autres variables (`DISTRO_NAME`, `COMPUTER_ARCHITECTURE`, `ARCHIVE_NAME`, `EXTRACTED_DIR`, `VDI_NAME`, `OS_TYPE` et `VM_NAME`) liées a l'extraction de l'archive, l'emplacement de l'image tirée de l'archive, le nom de l'OS ... pour que ces variables correspondent a la hiérarchie de l'archive et le nom de l'OS.
 
 Pour le moment le script utilise/download une image Ubuntu-25.04 depuis l'url suivante: https://sourceforge.net/projects/osboxes/files/v/vb/55-U-u/25.04/
@@ -31,7 +31,7 @@ Le script propose les fonctionnalités suivantes:
 
 ### Explications des variables globales
 
-[!CAUTION]
+>[!CAUTION]
 > J'ai obtenu et construit ces variables en suivant la structure de l’URL et l'archive en elle-même qui est téléchargée depuis [sourceforge.net](https://sourceforge.net), spécifiquement celles de [osboxes](https://sourceforge.net/projects/osboxes) dont l'architecture de l'archive peut potentiellement changer d'une archive a une autre et d'autant plus en utilisant une autre source pour les téléchargements.
 
 
