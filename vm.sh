@@ -80,6 +80,16 @@ add_shared_folder() {
     echo -e "${GREEN}Shared folder added.${RESET}"
 }
 
+poweroff_vm() {
+    running_vm=$(VBoxManage showvminfo "${VM_NAME}" | grep -q -c "running (since")
+    if [ -z "${running_vm}" ]; then
+        VBoxManage controlvm "${VM_NAME}" poweroff
+        echo -e "${GREEN}VM ${VM_NAME} powered off${RESET}\n"
+    else
+        echo -e "${RED}No VM ${VM_NAME} to power off${RESET}\n"
+    fi
+}
+
 delete_vm() {
     existing_vm=$(VBoxManage list vms)
     if [ -z "${existing_vm}" ]; then
@@ -120,12 +130,13 @@ menu() {
     echo "[2] Create VM"
     echo "[3] Add shared folder"
     echo "[4] Start VM"
-    echo "[5] Delete VM"
-    echo "[6] Delete extracted archive folder"
-    echo "[7] Exit"
-    read -p "Choose an option [1-7]: " choice
+    echo "[5] PowerOff VM"
+    echo "[6] Delete VM"
+    echo "[7] Delete extracted archive folder"
+    echo "[8] Exit"
+    read -p "Choose an option [1-8]: " choice
 
-    if [[ $choice -ge 1 && $choice -le 7 ]]; then
+    if [[ $choice -ge 1 && $choice -le 8 ]]; then
         return $choice
     else
         echo -e "\n${RED}Invalid choice. Try again${RESET}\n"
@@ -161,10 +172,12 @@ main() {
         echo -e "${GREEN}VM ${VM_NAME} started${RESET}"
         echo "If a shared folder has been added it will be mounted at /media/sf_shared"
     elif [ "${answer}" -eq 5 ]; then
-        delete_vm
+        poweroff_vm
     elif [ "${answer}" -eq 6 ]; then
-        delete_extracted_archive_folder
+        delete_vm
     elif [ "${answer}" -eq 7 ]; then
+        delete_extracted_archive_folder
+    elif [ "${answer}" -eq 8 ]; then
         exit 1
     fi
 
